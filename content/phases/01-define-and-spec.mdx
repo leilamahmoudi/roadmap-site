@@ -6,20 +6,43 @@ summary: "Interview, SPEC.md, and a starting prompt before any code exists."
 
 # Phase 1: Define the Project and Write a Spec
 
-*Content coming soon.*
-
-This phase covers the interview process, producing a `SPEC.md`, and crafting the starting prompt before any code is written.
+Before any code exists, spend one session turning a vague idea into a written spec. This gives every subsequent session a shared source of truth to load from.
 
 ## Steps
 
-### 1. Interview
+### 1. Run the Interview
 
-Placeholder: describe the interview process here.
+Ask Claude to interview you about the project. Give short answers — you can elaborate in the spec.
 
-### 2. Write SPEC.md
+```
+You are a senior software architect. Interview me about a project I want to build.
+Ask one question at a time. When you have enough to write a complete spec, stop asking
+and produce a SPEC.md with: project goal, users, core features, tech stack, constraints,
+and anything explicitly out of scope.
+```
 
-Placeholder: describe what goes in the spec.
+### 2. Review and Lock the Spec
 
-### 3. Craft the Starting Prompt
+Read the generated `SPEC.md` before moving on. Fix anything wrong. Add anything missing. The spec is the contract — if it's wrong here, every downstream session inherits the mistake.
 
-Placeholder: describe the starting prompt format and how to write it.
+### 3. Write the Starting Prompt
+
+With the spec in hand, write a single starting prompt you'll paste at the top of every new implementation session. Its job is to load context fast.
+
+<Collapsible label="Show starting prompt template">
+
+```
+You are a senior [role] working on [project name].
+
+Context:
+- Read SPEC.md before doing anything else.
+- The current task is: [task from the task list]
+- Do not change anything outside the scope of this task.
+
+Constraints:
+- [list any hard constraints from the spec]
+
+When you're done, summarize what you changed and flag anything that needs a decision.
+```
+
+</Collapsible>
