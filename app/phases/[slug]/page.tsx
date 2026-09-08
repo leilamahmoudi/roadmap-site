@@ -25,9 +25,5 @@ export default async function PhasePage({ params }: Props) {
     `@/content/phases/${slug}.mdx`
   );
 
-  return (
-    <main className="mx-auto max-w-3xl px-6 py-12 prose prose-neutral dark:prose-invert">
-      <Content />
-    </main>
-  );
+  return <Content />;
 }
