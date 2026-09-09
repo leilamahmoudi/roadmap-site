@@ -1,43 +1,31 @@
-# Phase 3: Plan the Architecture
+# Phase 3: Plan the Architecture and Tech Stack
 
-Before writing implementation code, get the technical shape of the project into a document. This prevents mid-build rewrites caused by decisions that should have been made upfront.
+This session produces one document: `build-plan.md`.
 
-## Steps
+Before creating the build plan, decide what tech stack and architecture make the most sense for this project.
 
-### 1. Produce the Architecture Doc
+## Run the Technical Interview
 
-Ask Claude to draft an architecture document from the spec. Review it the same way you reviewed the spec: fix anything wrong, add anything missing.
+Ask Claude to guide you through the important technical decisions one at a time.
 
-```
-Read SPEC.md. Produce an ARCHITECTURE.md covering: system components,
-data model, API surface, key dependencies, and any decisions that will
-be hard to reverse later. Flag anything the spec leaves ambiguous.
-```
+## Example Prompt
 
-### 2. Make Key Technical Decisions
+Read `project-owner-expectations.md` and the specialist roles defined for this project.
 
-Work through the flagged ambiguities one at a time. For each one, ask Claude to lay out the options with tradeoffs, then make a call and record it.
+Act as a senior software architect and help me decide the architecture and tech stack before we create the implementation plan.
 
-```
-For [decision], give me two or three options with tradeoffs.
-Keep it brief. I will tell you which to go with.
-```
+Use current best practices for products like this, but do not recommend technologies just because they are popular.
 
-Record each decision in `ARCHITECTURE.md` so future sessions do not relitigate them.
+For each important technical decision:
 
-### 3. Generate a Task List
+1. Explain what decision we need to make.
+2. Recommend the option you think fits this project best and explain why.
+3. Show the strongest alternatives and their trade-offs.
+4. Explain which product requirements or specialist perspectives influenced your recommendation.
+5. Ask me to make or confirm the decision before moving to the next one.
 
-Break the architecture into an ordered list of implementation tasks. Each task should be small enough to complete in one session.
+Ask one decision at a time. Do not make assumptions when information is missing.
 
-```
-Using SPEC.md and ARCHITECTURE.md, produce an ordered task list
-for implementation. Each task should be completable in a single
-focused session. Group related tasks and flag any hard dependencies.
-```
+Keep the solution as simple as the product allows and call out anything that would be unnecessary over-engineering.
 
-## Summary
-
-- Draft the architecture from the spec, not from memory.
-- Resolve ambiguities before they become blockers mid-build.
-- Record every decision so sessions stay consistent.
-- The task list is the bridge between planning and building.
+Once we have agreed on the important technical decisions, stop the interview and use those decisions to create `build-plan.md`.
