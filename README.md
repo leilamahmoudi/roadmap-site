@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Claude Code Workflow
 
-## Getting Started
+A structured four-phase workflow for building software products with Claude Code. Each phase produces a document that the next phase builds on.
 
-First, run the development server:
+## How to Use
+
+Copy the `.claude/commands/` folder into your project root:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp -r .claude/commands/ your-project/.claude/commands/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open your project in Claude Code and run the phases in order.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## The Phases
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### `/phase1` — Define and Spec
 
-## Learn More
+Runs an interview to define your project. Produces `project-owner-expectations.md`.
 
-To learn more about Next.js, take a look at the following resources:
+Claude will ask one question at a time about your project goal, users, core features, constraints, and what is out of scope. Answer briefly. Claude will ask follow-up questions if anything is unclear.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### `/phase2` — Assign Roles
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Reads `project-owner-expectations.md` and defines the specialist roles relevant to your project — such as product, UX, architecture, or security.
 
-## Deploy on Vercel
+These roles create concrete quality criteria and constraints for the next phases. They are specific to your project, not a fixed list.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### `/phase3` — Plan the Architecture and Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Guides you through the important technical decisions one at a time. Produces two documents:
+
+- `build-plan.md` — the agreed architecture, tech stack, and key decisions
+- `task-list.md` — the implementation broken into small, ordered, actionable tasks
+
+### `/phase4` — Implement
+
+Reads `build-plan.md` and `task-list.md` and works through the tasks in order. One task at a time, verified before moving on.
+
+## Requirements
+
+- [Claude Code](https://claude.ai/code)
