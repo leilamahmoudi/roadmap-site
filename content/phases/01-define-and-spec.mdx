@@ -6,50 +6,28 @@ summary: "Turn a vague idea into a written spec before any code exists."
 
 # Phase 1: Define and Spec
 
-Spend one session turning a vague idea into a written spec. Every subsequent session loads from it as the shared source of truth.
+The first session produces one document: `project-owner-expectations.md`.
 
-## Steps
+## Run the Interview
 
-### 1. Run the Interview
+Ask Claude to interview you about the project. It should ask **one question at a time** and provide answer options when possible.
 
-Ask Claude to interview you about the project. Give short answers; you can elaborate in the spec.
+Answer briefly but clearly. If your answer is unclear or incomplete, Claude should ask a follow-up question rather than make assumptions.
 
-```
-You are a senior software architect. Interview me about a project I want to build.
-Ask one question at a time. When you have enough to write a complete spec, stop asking
-and produce a SPEC.md with: project goal, users, core features, tech stack, constraints,
-and anything explicitly out of scope.
-```
+## Example Prompt
 
-### 2. Review and Lock the Spec
+You are a senior software architect. Interview me about a project I want to build using `AskUserQuestion`.
 
-Read the generated `SPEC.md` before moving on. Fix anything wrong. Add anything missing. The spec is the contract: if it is wrong here, every downstream session inherits the mistake.
+Ask one question at a time and provide answer options when possible. If my answer is unclear or incomplete, ask follow-up questions. Do not make assumptions.
 
-### 3. Write the Starting Prompt
+When you have enough information to create a complete project definition, stop the interview and produce `project-owner-expectations.md`.
 
-Write a single starting prompt you will paste at the top of every new implementation session. Its job is to load context fast.
+## What the Document Should Cover
 
-<Collapsible label="Show starting prompt template">
-
-```
-You are a senior [role] working on [project name].
-
-Context:
-- Read SPEC.md before doing anything else.
-- The current task is: [task from the task list]
-- Do not change anything outside the scope of this task.
-
-Constraints:
-- [list any hard constraints from the spec]
-
-When you are done, summarize what you changed and flag anything that needs a decision.
-```
-
-</Collapsible>
-
-## Summary
-
-- Write the spec before touching code.
-- One question at a time keeps the interview focused.
-- Lock the spec once it looks right; changes later cost more.
-- The starting prompt is what makes every future session consistent.
+| Section           | What it captures                                          |
+| ----------------- | --------------------------------------------------------- |
+| **Project goal**  | What this is and why it exists                            |
+| **Users**         | Who it is for, specific enough to be useful               |
+| **Core features** | What the product must do, not nice-to-haves               |
+| **Constraints**   | Hard limits such as budget, timeline, or existing systems |
+| **Out of scope**  | What this explicitly does not do                          |

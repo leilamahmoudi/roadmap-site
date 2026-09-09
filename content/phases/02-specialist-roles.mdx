@@ -6,20 +6,25 @@ summary: "Give Claude a focused identity at the start of each session to sharpen
 
 # Phase 2: Assign Roles
 
-Before each work session, give Claude a specific role. A focused identity produces sharper, more consistent output than a blank-slate prompt.
+> The role you give Claude at the start of a session shapes everything that follows. A focused identity produces sharper output than a blank-slate prompt. Switch roles when the type of work switches.
 
-## Steps
+---
 
-### 1. Choose the Right Role
+## 1. Match the Role to the Task
 
-Match the role to the task. A session focused on database design calls for a different identity than one focused on writing UI copy.
+Different tasks need different identities. A session focused on data modeling calls for a different role than one writing user-facing copy.
 
-Examples:
-- "You are a senior backend engineer specializing in PostgreSQL."
-- "You are a technical writer producing docs for a developer audience."
-- "You are a security engineer reviewing this code for vulnerabilities."
+| Task type | Example role |
+|---|---|
+| Backend logic | Senior backend engineer, specializing in [stack] |
+| Frontend / UI | Senior frontend engineer with a focus on accessibility |
+| Database design | Database architect familiar with [Postgres / SQLite / etc.] |
+| Security review | Security engineer reviewing for OWASP top 10 |
+| Documentation | Technical writer for a developer audience |
 
-### 2. Write the Role Prompt
+---
+
+## 2. Write the Role Prompt
 
 Keep it to two or three sentences. State the role, the relevant expertise, and any behavioral constraints.
 
@@ -29,21 +34,27 @@ flag anything that looks like scope creep. You do not refactor code that
 is not directly related to the current task.
 ```
 
-### 3. Combine With Context
+---
 
-Stack the role prompt on top of your starting prompt from Phase 1. Role first, then context, then the task.
+## 3. Stack It With Context
+
+Role goes first, then the starting prompt from Phase 1, then the task. Order matters: Claude reads top to bottom, and identity should be set before context is loaded.
 
 ```
 You are a senior [role] working on [project name].
 
-[paste starting prompt from Phase 1 here]
+Before doing anything:
+1. Read project-owner-expectations.md
+2. Read the current task below
 
-Today's task: [specific task]
+Current task: [task]
 ```
+
+---
 
 ## Summary
 
-- Assign a role at the start of every session.
+- Assign a role at the start of every session, not just the first one.
 - Match the role to the type of work in that session.
-- Stack: role prompt, then context, then the task.
+- Role first, then context, then the task.
 - Consistent roles reduce drift across sessions.
