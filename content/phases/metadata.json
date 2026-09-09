@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "01-define-and-spec",
+    "order": 1,
+    "title": "Define and Spec",
+    "summary": "Turn a vague idea into a written spec before any code exists."
+  },
+  {
+    "slug": "02-specialist-roles",
+    "order": 2,
+    "title": "Assign Roles",
+    "summary": "Give Claude a focused identity at the start of each session to sharpen output quality."
+  },
+  {
+    "slug": "03-architecture-and-planning",
+    "order": 3,
+    "title": "Plan the Architecture",
+    "summary": "Lock in the technical shape of the project before writing any implementation code."
+  },
+  {
+    "slug": "04-implementation",
+    "order": 4,
+    "title": "Implement",
+    "summary": "Work through the task list with Claude, one focused session at a time."
+  }
+]

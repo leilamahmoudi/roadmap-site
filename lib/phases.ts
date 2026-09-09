@@ -1,8 +1,7 @@
-import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
+import fs from "fs";
 
-const phasesDir = path.join(process.cwd(), "content/phases");
+const metadataPath = path.join(process.cwd(), "content/phases/metadata.json");
 
 export interface PhaseMeta {
   slug: string;
@@ -12,23 +11,8 @@ export interface PhaseMeta {
 }
 
 export function getAllPhases(): PhaseMeta[] {
-  const files = fs
-    .readdirSync(phasesDir)
-    .filter((f) => f.endsWith(".mdx"));
-
-  return files
-    .map((file) => {
-      const slug = file.replace(/\.mdx$/, "");
-      const raw = fs.readFileSync(path.join(phasesDir, file), "utf8");
-      const { data } = matter(raw);
-      return {
-        slug,
-        order: data.order as number,
-        title: data.title as string,
-        summary: data.summary as string,
-      };
-    })
-    .sort((a, b) => a.order - b.order);
+  const raw = fs.readFileSync(metadataPath, "utf8");
+  return (JSON.parse(raw) as PhaseMeta[]).sort((a, b) => a.order - b.order);
 }
 
 export function getPhaseBySlug(slug: string): PhaseMeta | null {
