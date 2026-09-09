@@ -1,18 +1,18 @@
 ---
-title: "Define the Project and Write a Spec"
+title: "Define and Spec"
 order: 1
-summary: "Interview, SPEC.md, and a starting prompt before any code exists."
+summary: "Turn a vague idea into a written spec before any code exists."
 ---
 
-# Phase 1: Define the Project and Write a Spec
+# Phase 1: Define and Spec
 
-Before any code exists, spend one session turning a vague idea into a written spec. This gives every subsequent session a shared source of truth to load from.
+Spend one session turning a vague idea into a written spec. Every subsequent session loads from it as the shared source of truth.
 
 ## Steps
 
 ### 1. Run the Interview
 
-Ask Claude to interview you about the project. Give short answers — you can elaborate in the spec.
+Ask Claude to interview you about the project. Give short answers; you can elaborate in the spec.
 
 ```
 You are a senior software architect. Interview me about a project I want to build.
@@ -23,11 +23,11 @@ and anything explicitly out of scope.
 
 ### 2. Review and Lock the Spec
 
-Read the generated `SPEC.md` before moving on. Fix anything wrong. Add anything missing. The spec is the contract — if it's wrong here, every downstream session inherits the mistake.
+Read the generated `SPEC.md` before moving on. Fix anything wrong. Add anything missing. The spec is the contract: if it is wrong here, every downstream session inherits the mistake.
 
 ### 3. Write the Starting Prompt
 
-With the spec in hand, write a single starting prompt you'll paste at the top of every new implementation session. Its job is to load context fast.
+Write a single starting prompt you will paste at the top of every new implementation session. Its job is to load context fast.
 
 <Collapsible label="Show starting prompt template">
 
@@ -42,7 +42,14 @@ Context:
 Constraints:
 - [list any hard constraints from the spec]
 
-When you're done, summarize what you changed and flag anything that needs a decision.
+When you are done, summarize what you changed and flag anything that needs a decision.
 ```
 
 </Collapsible>
+
+## Summary
+
+- Write the spec before touching code.
+- One question at a time keeps the interview focused.
+- Lock the spec once it looks right; changes later cost more.
+- The starting prompt is what makes every future session consistent.

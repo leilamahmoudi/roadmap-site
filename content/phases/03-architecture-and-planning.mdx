@@ -1,25 +1,49 @@
 ---
-title: "Architecture and Planning"
+title: "Plan the Architecture"
 order: 3
 summary: "Lock in the technical shape of the project before writing any implementation code."
 ---
 
-# Phase 3: Architecture and Planning
+# Phase 3: Plan the Architecture
 
-*Content coming soon.*
-
-This phase covers producing an architecture doc, making key technical decisions, and generating a task list before any implementation starts.
+Before writing implementation code, get the technical shape of the project into a document. This prevents mid-build rewrites caused by decisions that should have been made upfront.
 
 ## Steps
 
 ### 1. Produce the Architecture Doc
 
-Placeholder: describe what goes in the architecture document.
+Ask Claude to draft an architecture document from the spec. Review it the same way you reviewed the spec: fix anything wrong, add anything missing.
+
+```
+Read SPEC.md. Produce an ARCHITECTURE.md covering: system components,
+data model, API surface, key dependencies, and any decisions that will
+be hard to reverse later. Flag anything the spec leaves ambiguous.
+```
 
 ### 2. Make Key Technical Decisions
 
-Placeholder: describe how to use Claude to evaluate options and record decisions.
+Work through the flagged ambiguities one at a time. For each one, ask Claude to lay out the options with tradeoffs, then make a call and record it.
+
+```
+For [decision], give me two or three options with tradeoffs.
+Keep it brief. I will tell you which to go with.
+```
+
+Record each decision in `ARCHITECTURE.md` so future sessions do not relitigate them.
 
 ### 3. Generate a Task List
 
-Placeholder: describe how to break the architecture into an ordered implementation task list.
+Break the architecture into an ordered list of implementation tasks. Each task should be small enough to complete in one session.
+
+```
+Using SPEC.md and ARCHITECTURE.md, produce an ordered task list
+for implementation. Each task should be completable in a single
+focused session. Group related tasks and flag any hard dependencies.
+```
+
+## Summary
+
+- Draft the architecture from the spec, not from memory.
+- Resolve ambiguities before they become blockers mid-build.
+- Record every decision so sessions stay consistent.
+- The task list is the bridge between planning and building.

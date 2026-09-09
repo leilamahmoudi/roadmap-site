@@ -1,25 +1,64 @@
 ---
-title: "Implementation"
+title: "Implement"
 order: 4
 summary: "Work through the task list with Claude, one focused session at a time."
 ---
 
-# Phase 4: Implementation
+# Phase 4: Implement
 
-*Content coming soon.*
-
-This phase covers the session-by-session implementation loop: loading context, working through tasks, reviewing output, and keeping the spec in sync.
+With a spec, architecture, and task list in place, implementation becomes a series of focused, repeatable sessions. Each one follows the same loop.
 
 ## Steps
 
 ### 1. Load Context for Each Session
 
-Placeholder: describe the context-loading prompt pattern.
+Start every session with the same context block. Never assume Claude remembers the previous session.
 
-### 2. Work Through Tasks
+```
+You are a senior [role] working on [project name].
 
-Placeholder: describe the task-by-task implementation loop.
+Before doing anything:
+1. Read SPEC.md
+2. Read ARCHITECTURE.md
+3. Read the current task below
+
+Current task: [paste task from task list]
+
+Do not change anything outside the scope of this task.
+```
+
+### 2. Work Through the Task
+
+Let Claude produce the implementation. If the task is large, break it into smaller steps within the session rather than expanding the scope.
+
+If Claude proposes something that contradicts the spec or architecture, stop it and ask why before accepting the change.
 
 ### 3. Review and Sync
 
-Placeholder: describe how to review Claude's output and keep SPEC.md up to date.
+Before ending a session, do two things:
+
+1. Read the output. Check it against the spec and architecture before committing.
+2. Update `SPEC.md` or `ARCHITECTURE.md` if anything material changed. Future sessions load those files; if they are stale, context drift builds up.
+
+<Collapsible label="Show review checklist prompt">
+
+```
+Review what you just produced against SPEC.md and ARCHITECTURE.md.
+
+Flag anything that:
+- Contradicts the spec
+- Deviates from the architecture decisions
+- Adds scope that was not in the task
+- Will be hard to reverse later
+
+Summarize what changed and what (if anything) needs updating in the docs.
+```
+
+</Collapsible>
+
+## Summary
+
+- Load the same context block at the start of every session.
+- One task per session; do not expand scope mid-session.
+- Review output against the spec before committing.
+- Keep the docs in sync so the next session starts clean.

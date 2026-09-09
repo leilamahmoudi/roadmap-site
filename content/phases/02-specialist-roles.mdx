@@ -1,25 +1,49 @@
 ---
-title: "Assign Specialist Roles"
+title: "Assign Roles"
 order: 2
-summary: "Give Claude a focused identity before each work session to sharpen output quality."
+summary: "Give Claude a focused identity at the start of each session to sharpen output quality."
 ---
 
-# Phase 2: Assign Specialist Roles
+# Phase 2: Assign Roles
 
-*Content coming soon.*
-
-This phase covers how to frame Claude's role at the start of each session to get more focused, higher-quality output.
+Before each work session, give Claude a specific role. A focused identity produces sharper, more consistent output than a blank-slate prompt.
 
 ## Steps
 
 ### 1. Choose the Right Role
 
-Placeholder: describe how to pick a role that matches the task.
+Match the role to the task. A session focused on database design calls for a different identity than one focused on writing UI copy.
+
+Examples:
+- "You are a senior backend engineer specializing in PostgreSQL."
+- "You are a technical writer producing docs for a developer audience."
+- "You are a security engineer reviewing this code for vulnerabilities."
 
 ### 2. Write the Role Prompt
 
-Placeholder: describe the role prompt format and examples.
+Keep it to two or three sentences. State the role, the relevant expertise, and any behavioral constraints.
+
+```
+You are a senior [specialty] engineer. You write clean, minimal code and
+flag anything that looks like scope creep. You do not refactor code that
+is not directly related to the current task.
+```
 
 ### 3. Combine With Context
 
-Placeholder: describe how to layer role + SPEC.md + task context.
+Stack the role prompt on top of your starting prompt from Phase 1. Role first, then context, then the task.
+
+```
+You are a senior [role] working on [project name].
+
+[paste starting prompt from Phase 1 here]
+
+Today's task: [specific task]
+```
+
+## Summary
+
+- Assign a role at the start of every session.
+- Match the role to the type of work in that session.
+- Stack: role prompt, then context, then the task.
+- Consistent roles reduce drift across sessions.
