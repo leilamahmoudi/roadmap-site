@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "sync-commands": "node scripts/sync-commands.mjs",
+    "predev": "npm run sync-commands",
+    "prebuild": "npm run sync-commands",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
