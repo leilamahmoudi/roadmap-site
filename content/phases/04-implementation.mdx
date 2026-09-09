@@ -1,58 +1,23 @@
 # Phase 4: Implement
 
-With a spec, architecture, and task list in place, implementation becomes a series of focused, repeatable sessions. Each one follows the same loop.
+Start a fresh Claude Code session for implementation.
 
-## Steps
+Provide the relevant project files, then ask Claude to read them before writing any code:
 
-### 1. Load Context for Each Session
+1. `SPEC.md`
+2. `ARCHITECTURE.md`
+3. `task-list.md`
 
-Start every session with the same context block. Never assume Claude remembers the previous session.
+Claude should treat these files as the source of truth for the implementation and follow the tasks in order.
 
-```
-You are a senior [role] working on [project name].
+## Example Prompt
 
-Before doing anything:
-1. Read SPEC.md
-2. Read ARCHITECTURE.md
-3. Read the current task below
+Read the provided `SPEC.md`, `ARCHITECTURE.md`, and `task-list.md` before making any changes.
 
-Current task: [paste task from task list]
+Use them as the source of truth for this project.
 
-Do not change anything outside the scope of this task.
-```
+Start with the first unfinished task in `task-list.md`. Before coding, briefly explain what you are going to implement and which parts of the spec and architecture it depends on.
 
-### 2. Work Through the Task
+Implement one task at a time, verify the result, then update `task-list.md` before moving on.
 
-Let Claude produce the implementation. If the task is large, break it into smaller steps within the session rather than expanding the scope.
-
-If Claude proposes something that contradicts the spec or architecture, stop it and ask why before accepting the change.
-
-### 3. Review and Sync
-
-Before ending a session, do two things:
-
-1. Read the output. Check it against the spec and architecture before committing.
-2. Update `SPEC.md` or `ARCHITECTURE.md` if anything material changed. Future sessions load those files; if they are stale, context drift builds up.
-
-<Collapsible label="Show review checklist prompt">
-
-```
-Review what you just produced against SPEC.md and ARCHITECTURE.md.
-
-Flag anything that:
-- Contradicts the spec
-- Deviates from the architecture decisions
-- Adds scope that was not in the task
-- Will be hard to reverse later
-
-Summarize what changed and what (if anything) needs updating in the docs.
-```
-
-</Collapsible>
-
-## Summary
-
-- Load the same context block at the start of every session.
-- One task per session; do not expand scope mid-session.
-- Review output against the spec before committing.
-- Keep the docs in sync so the next session starts clean.
+Do not change agreed product or architecture decisions without calling it out first.
